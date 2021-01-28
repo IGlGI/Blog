@@ -7,7 +7,7 @@ import {Environment} from './interface';
 export const environment: Environment = {
   production: false,
   apiKey: '',
-  dbConnectionString: 'https://angular-blog-demo-default-rtdb.europe-west1.firebasedatabase.app/'
+  dbConnectionString: ''
 };
 
 
