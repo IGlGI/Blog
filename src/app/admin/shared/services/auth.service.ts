@@ -7,7 +7,9 @@ import {User} from '../../../shared/models/user.model';
 import {environment} from '../../../../environments/environment';
 import {FbAuthResponse} from '../../../shared/models/fb-auth-response.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
   public error$: Subject<string> = new Subject<string>();

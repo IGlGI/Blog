@@ -10,8 +10,13 @@
   }
 
   .info {
+    display: inline-flex;
     strong {
       margin-right: 1rem;
     }
   }
+}
+
+.editor {
+  padding: 1rem 0;
 }

@@ -35,9 +35,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/admin', 'dashboard']);
+    }
     this.route.queryParams.subscribe((params: Params) => {
       if (params.loggedIn){
         this.caution = 'Please login again.';
+      }
+      else if (params.accessDenied){
+        this.caution = 'The session has expired.';
       }
     });
   }
