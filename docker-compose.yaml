@@ -1,0 +1,132 @@
+version: '3.8'
+
+volumes:
+    mssqlsystem:
+        driver: local
+    mssqluster:
+        driver: local
+    rabbitmqstats_data:
+        driver: local
+    rabbitmqdisc1_data:
+        driver: local
+    rabbitmqram1_data:
+        driver: local
+
+networks:
+    gbs-gs-net:
+        name: gbs-gs-net
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.20.0.0/16
+                  gateway: 172.20.0.1
+                  
+services:
+    gbs-gs-appserver:
+        image: gbs-gs-appserver
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=http://+:7000
+            - DB_CONNECTION_STRING=Server=db;Database=GBS-GoSpeech-AppServer-Tenants;User=sa;Password=QWRtaW4hNzc3
+            - RABBITMQ_CONNECTION_STRING=host=stats;virtualhost=/;username=gbsgsapp;password=R2JzIUdvIVNwZWVjaCNAMQ==;timeout=600;requestedHeartbeat=0
+            - IDENTITY_SERVER_CONNECTION_STRING=http://192.168.117.254:10000
+        container_name: gbs-gs-appserver
+        links:
+            - gbs-gs-identityserver
+            - stats
+        build:
+            dockerfile: ./GBS.GoSpeech.AppServer/Dockerfile
+            context: .
+        ports:
+            - "7000:7000"
+        networks:
+            gbs-gs-net:
+                ipv4_address: 172.20.0.3
+        depends_on:
+            - stats
+            - gbs-gs-identityserver
+        volumes:
+            - "/opt/gbs.gospeech/appserver/Logs"
+    gbs-gs-identityserver:
+        image: gbs-gs-identityserver
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=http://+:10000
+            - IDENTITY_SERVER_CONNECTION_STRING=http://192.168.117.254:10000
+            - DB_CONNECTION_STRING=Server=db;Database=GBS-GoSpeech-IdentityServer;User=sa;Password=QWRtaW4hNzc3
+        container_name: gbs-gs-identityserver
+        build:
+            dockerfile: ./GBS.GoSpeech.IdentityServer/Dockerfile
+            context: .
+        ports:
+            - "10000:10000"
+        networks:
+            gbs-gs-net:
+                ipv4_address: 172.20.0.4
+        volumes:
+            - "/opt/gbs.gospeech/identityserver/Logs"
+        depends_on:
+          - db
+        command: ["dotnet", "ef", "database update"]
+    db:
+        image: "mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04"
+        container_name: gbs-gs-dbserver
+        environment:
+            SA_PASSWORD: "QWRtaW4hNzc3"
+            ACCEPT_EULA: "Y"
+        ports:
+            - '14331:1433'
+        volumes:
+            - 'mssqlsystem:/var/opt/mssql'
+            - 'mssqluster:/var/opt/sqlserver'
+        networks:
+            gbs-gs-net:
+                ipv4_address: 172.20.0.10
+    stats:
+        image: bitnami/rabbitmq
+        container_name: stats
+        environment:
+            - RABBITMQ_USERNAME=gbsgsapp
+            - RABBITMQ_PASSWORD=R2JzIUdvIVNwZWVjaCNAMQ==
+            - RABBITMQ_NODE_TYPE=stats
+            - RABBITMQ_NODE_NAME=rabbit@stats
+            - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3
+        ports:
+            - '15672:15672'
+        volumes:
+            - 'rabbitmqstats_data:/bitnami'
+        networks:
+            gbs-gs-net:
+                ipv4_address: 172.20.0.5
+    queue-disc1:
+        image: bitnami/rabbitmq
+        environment:
+            - RABBITMQ_USERNAME=gbsgsapp
+            - RABBITMQ_PASSWORD=R2JzIUdvIVNwZWVjaCNAMQ==
+            - RABBITMQ_NODE_TYPE=queue-disc
+            - RABBITMQ_NODE_NAME=rabbit@queue-disc1
+            - RABBITMQ_CLUSTER_NODE_NAME=rabbit@stats
+            - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3
+        volumes:
+            - 'rabbitmqdisc1_data:/bitnami'
+        depends_on:
+            - stats
+        networks:
+            gbs-gs-net:
+                ipv4_address: 172.20.0.6
+    queue-ram1:
+        image: bitnami/rabbitmq
+        environment:
+            - RABBITMQ_USERNAME=gbsgsapp
+            - RABBITMQ_PASSWORD=R2JzIUdvIVNwZWVjaCNAMQ==
+            - RABBITMQ_NODE_TYPE=queue-ram
+            - RABBITMQ_NODE_NAME=rabbit@queue-ram1
+            - RABBITMQ_CLUSTER_NODE_NAME=rabbit@stats
+            - RABBITMQ_ERL_COOKIE=s3cr3tc00ki3
+        depends_on:
+          - stats
+        volumes:
+            - 'rabbitmqram1_data:/bitnami'
+        networks:
+            gbs-gs-net:
+                ipv4_address: 172.20.0.7
