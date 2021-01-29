@@ -6,16 +6,19 @@ import {Router} from '@angular/router';
   selector: 'app-login-page',
   template: ''
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit{
   constructor(
     public authService: AuthService,
     private router: Router,
   ) {
-    if (this.authService.isAuthenticated()) {
+  }
+
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
       this.router.navigate(['/admin', 'dashboard']);
     }
     else {
-      this.authService.login();
+      this.authService.startAuthentication();
     }
   }
 }

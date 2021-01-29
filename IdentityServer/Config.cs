@@ -31,18 +31,12 @@ namespace IdentityServer
                 {
                     ClientId = "spaCodeClient",
                     ClientName = "SPA Code Client",
-                    AccessTokenType = AccessTokenType.Jwt,
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequireConsent = false,
-                    RequireClientSecret = false,
+                    AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
-                    RequirePkce = false,
-                    AccessTokenLifetime = 3600,
-                    IdentityTokenLifetime = 30,
 
                     RedirectUris = new List<string>
                     {
-                        $"{spaClientUrl}/admin/dashboard",
+                        $"{spaClientUrl}/admin/callback",
                     },
                     PostLogoutRedirectUris = new List<string>
                     {
@@ -59,6 +53,7 @@ namespace IdentityServer
                         "resourceApi"
                     }
                 }
+
             };
     }
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {catchError} from 'rxjs/operators';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpParams, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {AuthService} from '../../admin/shared/services/auth.service';
 
@@ -15,9 +15,9 @@ export class AuthInterceptor implements HttpInterceptor{
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.authService.isAuthenticated()){
+    if (this.authService.isLoggedIn()){
       req = req.clone({
-        headers: this.authService.getHeaders()
+        headers: new HttpHeaders(this.authService.getAuthorizationHeaderValue()),
       });
     }
     return next.handle(req)

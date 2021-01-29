@@ -3,6 +3,7 @@ import {PostsService} from '../../shared/services/posts.service';
 import {Post} from '../../shared/models/post.model';
 import {Subscription} from 'rxjs';
 import {AlertService} from '../shared/services/alert.service';
+import {AuthService} from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -12,15 +13,15 @@ import {AlertService} from '../shared/services/alert.service';
 export class DashboardPageComponent implements OnInit, OnDestroy{
 
   posts: Post[];
-  searchStr: string;
+  searchStr = '';
   pSub: Subscription;
   rSub: Subscription;
 
   constructor(
     private postsService: PostsService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private authService: AuthService
   ) {
-    this.searchStr = '';
   }
 
   ngOnInit(): void {

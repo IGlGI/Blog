@@ -1,63 +1,59 @@
-import {Injectable, OnDestroy, OnInit} from '@angular/core';
-import {OidcClientNotification, OidcSecurityService, PublicConfiguration} from 'angular-auth-oidc-client';
-import {Observable, Subscription} from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+import { UserManager, UserManagerSettings, User } from 'oidc-client';
 import {environment} from '../../../../environments/environment';
-import {CookieService} from 'ngx-cookie-service';
-import {ActivatedRoute, Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  configuration: PublicConfiguration;
 
-  constructor(
-    public oidcSecurityService: OidcSecurityService,
-    private cookieService: CookieService,
-    private router: Router
-  ) {
-    this.configuration = this.oidcSecurityService.configuration;
-    this.isAuthenticated();
+  private manager = new UserManager(getClientSettings());
+  private user: User = null;
+
+  constructor() {
+    this.manager.getUser().then(user => {
+      this.user = user;
+    });
   }
 
-  login(): void {
-    this.oidcSecurityService.authorize();
+  isLoggedIn(): boolean {
+    console.log(this.user);
+    return this.user != null && !this.user.expired;
   }
 
-  logout(): void {
-    this.oidcSecurityService.logoff();
-    this.router.navigate(['/']);
-    console.log('Logged off ', this.oidcSecurityService.getState());
+  getClaims(): any {
+    return this.user.profile;
   }
 
-  isAuthenticated(): boolean {
-    const authSession = this.cookieService.get('idsrv.session');
-    if (this.oidcSecurityService.getState() && authSession) {
-      return true;
-    }
-    return false;
+  getAuthorizationHeaderValue(): string {
+    return `${this.user.token_type} ${this.user.access_token}`;
   }
 
-  public getHeaders(): HttpHeaders {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    return this.appendAuthHeader(headers);
+  startAuthentication(): Promise<void> {
+    return this.manager.signinRedirect();
   }
 
-  public getToken(): string {
-    const token = this.oidcSecurityService.getToken();
-    console.log('TOKEN: ', token);
-    return token;
+  logout(): Promise<void> {
+    return this.manager.signoutRedirect();
   }
 
-  private appendAuthHeader(headers: HttpHeaders): HttpHeaders {
-    const token = this.oidcSecurityService.getToken();
-
-    if (token === '') { return headers; }
-
-    const tokenValue = 'Bearer ' + token;
-    return headers.set('Authorization', tokenValue);
+  completeAuthentication(): Promise<void> {
+    return this.manager?.signinRedirectCallback().then(user => {
+      this.user = user;
+    });
   }
+}
 
+export function getClientSettings(): UserManagerSettings {
+  return {
+    authority: environment.isConnectionString,
+    client_id: 'spaCodeClient',
+    redirect_uri: `${environment.selfAddress}/admin/callback`,
+    post_logout_redirect_uri: environment.selfAddress,
+    response_type: 'id_token token',
+    scope: 'openid profile resourceApi',
+    filterProtocolClaims: true,
+    loadUserInfo: true
+  };
 }

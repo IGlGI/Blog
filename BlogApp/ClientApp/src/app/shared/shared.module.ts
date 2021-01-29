@@ -4,8 +4,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {QuillModule} from 'ngx-quill';
 import {SearchPipe} from './pipes/search.pipe';
 import {AlertService} from '../admin/shared/services/alert.service';
-import {AuthConfigModule} from './auth-config.module';
-import {CookieService} from 'ngx-cookie-service';
 
 const toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
@@ -25,7 +23,6 @@ const toolbarOptions = [
 @NgModule({
   declarations: [SearchPipe],
   imports: [
-    AuthConfigModule,
     CommonModule,
     QuillModule.forRoot({
       modules: {
@@ -33,9 +30,8 @@ const toolbarOptions = [
       },
     })
   ],
-  providers: [AlertService, CookieService],
+  providers: [AlertService],
   exports: [
-    AuthConfigModule,
     QuillModule,
     SearchPipe,
     HttpClientModule,

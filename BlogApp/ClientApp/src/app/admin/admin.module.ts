@@ -9,11 +9,11 @@ import { CreatePageComponent } from './create-page/create-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import {SharedModule} from '../shared/shared.module';
 import {AuthGuard} from './shared/services/auth.guard';
-import {SearchPipe} from '../shared/pipes/search.pipe';
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { AuthCallbackComponent } from './shared/components/auth-callback/auth-callback.component';
 
 @NgModule({
-  declarations: [AdminLayoutComponent, LoginPageComponent, DashboardPageComponent, CreatePageComponent, EditPageComponent, AlertComponent],
+  declarations: [AdminLayoutComponent, LoginPageComponent, DashboardPageComponent, CreatePageComponent, EditPageComponent, AlertComponent, AuthCallbackComponent],
   imports: [
     SharedModule,
     FormsModule,
@@ -21,7 +21,8 @@ import { AlertComponent } from './shared/components/alert/alert.component';
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [
-          {path: '', redirectTo: '/admin/dashboard', pathMatch: 'full'},
+          {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
+          {path: 'callback', component: AuthCallbackComponent},
           {path: 'login', component: LoginPageComponent},
           {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
           {path: 'create', component: CreatePageComponent, canActivate: [AuthGuard]},
