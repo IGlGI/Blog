@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BlogApp.Common.Extensions;
+using BogApp.Models;
+using BlogApp.DataAccess.Repositories;
+using BlogApp.DataAccess.Repositories.Interfaces;
 
 namespace BlogApp
 {
@@ -18,6 +22,8 @@ namespace BlogApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSettings(Configuration);
+            services.AddTransient<IRepository<Post, string>, PostRepository>();
             services.AddControllersWithViews();
             services.AddSpaStaticFiles(configuration =>
             {
@@ -63,5 +69,7 @@ namespace BlogApp
                 }
             });
         }
+
+
     }
 }

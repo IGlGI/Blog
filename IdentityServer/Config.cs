@@ -6,8 +6,6 @@ namespace IdentityServer
 {
     public static class Config
     {
-        private const string spaClientUrl = "https://localhost:5001";
-
         public static IEnumerable<IdentityResource> IdentityResources =>
             new List<IdentityResource>
             {
@@ -23,7 +21,7 @@ namespace IdentityServer
                 new ApiScope("resourceApi", "My API")
             };
 
-        public static IEnumerable<Client> Clients =>
+        public static IEnumerable<Client> Clients(string spaClientUrl) =>
             new List<Client>
             {
                 // Angular Client
