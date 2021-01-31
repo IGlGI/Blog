@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { UserManager, UserManagerSettings, User } from 'oidc-client';
-import {environment} from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -48,11 +48,11 @@ export class AuthService {
 export function getClientSettings(): UserManagerSettings {
   return {
     authority: environment.isConnectionString,
-    client_id: 'spaCodeClient',
+    client_id: 'BlogAppClient',
     redirect_uri: `${environment.selfAddress}/admin/callback`,
     post_logout_redirect_uri: environment.selfAddress,
     response_type: 'id_token token',
-    scope: 'openid profile resourceApi',
+    scope: 'openid profile Blog_App_Api',
     filterProtocolClaims: true,
     loadUserInfo: true
   };

@@ -22,12 +22,13 @@ namespace IdentityServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSettings(Configuration);
+            var appSettings = services.AddSettings(Configuration);
 
             var builder = services.AddIdentityServer()
-                .AddInMemoryIdentityResources(Config.IdentityResources)
-                .AddInMemoryApiScopes(Config.ApiScopes)
-                .AddInMemoryClients(Config.Clients(Configuration.GetSection(EnvironmentConstants.AppConnection)?.Value))
+                .AddInMemoryIdentityResources(Config.IdentityResources())
+                .AddInMemoryApiResources(Config.ApiResources())
+                .AddInMemoryApiScopes(Config.ApiScopes())
+                .AddInMemoryClients(Config.Clients(appSettings))
                 .AddTestUsers(DefaultUsers.Users);
 
             builder.AddDeveloperSigningCredential();
