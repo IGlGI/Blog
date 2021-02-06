@@ -1,6 +1,6 @@
 ﻿using BlogApp.Common.Constants;
 using BlogApp.Swagger;
-using BogApp.Models;
+using BogApp.Entities;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

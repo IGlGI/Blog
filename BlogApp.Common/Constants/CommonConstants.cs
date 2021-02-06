@@ -2,18 +2,18 @@
 {
     public static class CommonConstants
     {
-        public static string ApiVersioningNameFormat = "VVV";
+        public const string ApiVersioningNameFormat = "VVV";
 
-        public static string InMemoryDb = "Microsoft.EntityFrameworkCore.InMemory";
+        public const string InMemoryDb = "Microsoft.EntityFrameworkCore.InMemory";
 
-        public static string ConfigurationFileName = "appsettings.json";
+        public const string ConfigurationFileName = "appsettings.json";
 
-        public static string SpaBuildDevCommand = "serve";
+        public const string SpaBuildDevCommand = "serve";
 
-        public static string SpaDevFolderName = "Clientapp";
+        public const string SpaDevFolderName = "ClientApp";
 
-        public static string SpaProdFolderName = "dist";
+        public const string BuildFolderName = "dist";
 
-        public static string SwaggerEndpointFileName = "swagger.json";
+        public const string SwaggerEndpointFileName = "swagger.json";
     }
 }

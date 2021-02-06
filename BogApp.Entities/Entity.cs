@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace BogApp.Models
+namespace BogApp.Entities
 {
-    public abstract class Entity<T>
+    public abstract record Entity<T>
     {
         public virtual T Id { get; set; }
 

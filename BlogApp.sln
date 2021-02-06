@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogApp", "BlogApp\BlogApp.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{3BD63A4D-F134-439D-A036-AED1C1EAB307}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.Common", "BlogApp.Common\BlogApp.Common.csproj", "{F728C09D-4A96-40F1-8FB0-C8FBA0AB51D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogApp.Common", "BlogApp.Common\BlogApp.Common.csproj", "{F728C09D-4A96-40F1-8FB0-C8FBA0AB51D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BogApp.Models", "BogApp.Models\BogApp.Models.csproj", "{6647E339-5858-4075-AA51-FE58B22DE4B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BogApp.Entities", "BogApp.Entities\BogApp.Entities.csproj", "{6647E339-5858-4075-AA51-FE58B22DE4B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.DataAccess", "BlogApp.DataAccess\BlogApp.DataAccess.csproj", "{D675A529-0FD4-46C3-A055-8E5397C603B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogApp.Infrastructure", "BlogApp.Infrastructure\BlogApp.Infrastructure.csproj", "{D675A529-0FD4-46C3-A055-8E5397C603B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

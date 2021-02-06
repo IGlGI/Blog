@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BlogApp.DataAccess.Repositories.Interfaces
+namespace BlogApp.Infrastructure.Repositories.Interfaces
 {
     public interface IRepository<TEntity, TId>
     {
@@ -10,7 +10,7 @@ namespace BlogApp.DataAccess.Repositories.Interfaces
 
         public Task<TEntity> Get(TId id, CancellationToken cancellationToken);
 
-        public Task Create(TEntity entity, CancellationToken cancellationToken);
+        public Task<TId> Create(TEntity entity, CancellationToken cancellationToken);
 
         public Task Update(TId id, TEntity entity, CancellationToken cancellationToken);
 

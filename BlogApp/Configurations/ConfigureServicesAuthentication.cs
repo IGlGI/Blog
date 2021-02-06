@@ -1,4 +1,4 @@
-﻿using BogApp.Models;
+﻿using BogApp.Entities;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Flurl;
@@ -22,8 +22,6 @@ namespace BlogApp.Configurations
                     option.Authority = appSettings.IdentityServerConnectionString;
                     option.Audience = appSettings.IdentityServerConnectionString.AppendPathSegment(IdentityServerConstants.ResourcesRelativePath);
                     option.TokenValidationParameters.ValidateAudience = false;
-
-                    //option.RequireHttpsMetadata = false; //Dev mode
                 })
                 .AddCookie();
         }

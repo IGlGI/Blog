@@ -9,7 +9,7 @@
         "APP_CONNECTION_STRING": "https://localhost:5001",
         "IDENTITY_SERVER_CONNECTION_STRING": "https://localhost:10001",
         "DB_NAME": "Default_db",
-        "DB_CONNECTION_STRING": ""
+        "DB_CONNECTION_STRING": "mongodb://localhost:27017"
       }
     }
   }

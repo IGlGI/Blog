@@ -5,15 +5,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlogApp.Common.Extensions;
-using BogApp.Models;
-using BlogApp.DataAccess.Repositories;
-using BlogApp.DataAccess.Repositories.Interfaces;
+using BlogApp.Infrastructure.Repositories;
+using BlogApp.Infrastructure.Repositories.Interfaces;
 using BlogApp.Configurations;
 using Serilog;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using BlogApp.Common.Constants;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using MongoDB.Driver;
 
 namespace BlogApp
 {
@@ -39,14 +39,28 @@ namespace BlogApp
             services.AddCors();
             services.ConfigureCors(appSettings);
             services.AddHttpClient();
-            services.AddTransient<IRepository<Post, string>, PostRepository>();
+
+            services.AddTransient<IMongoClient>(client => new MongoClient(appSettings.DbConnectionString));
+            services.AddTransient<IMongoDatabase>(services =>
+            {
+                using (var scope = services.CreateScope())
+                {
+                    var client = scope.ServiceProvider.GetRequiredService<IMongoClient>();
+                    return client.GetDatabase(appSettings.DbName);
+                }
+            });
+
+            services.AddTransient<IPostRepository, PostRepository>();
+
             services.AddControllers().AddNewtonsoftJson();
+
             services.AddLogging(x => x.AddSerilog(new LoggerConfiguration().ReadFrom.Configuration(_configuration).CreateLogger()));
             services.TryAdd(ServiceDescriptor.Singleton<ILoggerFactory, LoggerFactory>());
             services.TryAdd(ServiceDescriptor.Singleton(typeof(ILogger<>), typeof(Logger<>)));
+
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = $"{CommonConstants.SpaDevFolderName}/{CommonConstants.BuildFolderName}";
             });
         }
 
@@ -92,7 +106,7 @@ namespace BlogApp
                 if (_environment.IsDevelopment())
                     spa.Options.SourcePath = CommonConstants.SpaDevFolderName;
                 else
-                    spa.Options.SourcePath = CommonConstants.SpaProdFolderName;
+                    spa.Options.SourcePath = CommonConstants.BuildFolderName;
 
                 if (_environment.IsDevelopment())
                 {

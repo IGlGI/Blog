@@ -1,5 +1,5 @@
 using BlogApp.Common.Extensions;
-using BogApp.Models;
+using BogApp.Entities;
 using Flurl;
 using IdentityModel;
 using IdentityServer4;

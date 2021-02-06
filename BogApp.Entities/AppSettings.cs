@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BogApp.Models
+namespace BogApp.Entities
 {
     public record AppSettings
     {

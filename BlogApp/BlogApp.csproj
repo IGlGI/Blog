@@ -30,8 +30,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlogApp.Common\BlogApp.Common.csproj" />
-    <ProjectReference Include="..\BlogApp.DataAccess\BlogApp.DataAccess.csproj" />
-    <ProjectReference Include="..\BogApp.Models\BogApp.Models.csproj" />
+    <ProjectReference Include="..\BlogApp.Infrastructure\BlogApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\BogApp.Entities\BogApp.Entities.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
