@@ -1,6 +1,5 @@
 export interface Environment {
   production: boolean;
-  selfAddress: string;
+  serverConnectionString: string;
   isConnectionString: string;
-  dbConnectionString: string;
 }

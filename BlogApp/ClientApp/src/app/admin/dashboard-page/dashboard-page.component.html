@@ -18,7 +18,7 @@
         <td>{{idx + 1}}</td>
         <td>{{ post.author }}</td>
         <td>{{ post.title }}</td>
-        <td>{{ post.date | date: 'medium':undefined:'en'}}</td>
+        <td>{{ post.modified | date: 'medium':undefined:'en'}}</td>
         <td>
           <button
             class="btn btn-link edit"

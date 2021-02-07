@@ -1,6 +1,5 @@
 ﻿using BlogApp.Common.Constants;
 using BlogApp.Swagger;
-using BogApp.Entities;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -12,6 +11,7 @@ using System.IO;
 using System.Reflection;
 using Flurl;
 using Flurl.Http;
+using BlogApp.Common.Entities;
 
 namespace BlogApp.Configurations
 {

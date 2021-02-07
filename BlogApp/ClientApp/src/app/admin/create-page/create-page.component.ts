@@ -36,7 +36,7 @@ export class CreatePageComponent implements OnInit {
       title: this.form.value.title,
       text: this.form.value.text,
       author: this.form.value.author,
-      date: new Date(),
+      modified: new Date(),
     };
 
     this.postsService.create(post).subscribe(() => {

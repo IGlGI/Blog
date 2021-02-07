@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using BlogApp.Common.Constants;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using MongoDB.Driver;
+using BogApp.Entities;
 
 namespace BlogApp
 {
@@ -40,6 +41,7 @@ namespace BlogApp
             services.ConfigureCors(appSettings);
             services.AddHttpClient();
 
+            services.AddAutoMapper(typeof(Post));
             services.AddTransient<IMongoClient>(client => new MongoClient(appSettings.DbConnectionString));
             services.AddTransient<IMongoDatabase>(services =>
             {

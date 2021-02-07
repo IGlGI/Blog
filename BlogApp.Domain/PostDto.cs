@@ -1,10 +1,11 @@
 ﻿using BlogApp.Common.Entities;
+using MongoDB.Bson;
 
-namespace BogApp.Entities
+namespace BlogApp.Domain
 {
-    public record Post : Entity<string>
+    public sealed record PostDto : Entity<ObjectId>
     {
-        public override string Id { get; set; }
+        public override ObjectId Id { get; set; }
 
         public string Title { get; set; }
 

@@ -2,7 +2,6 @@
 using BogApp.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,15 +22,17 @@ namespace BlogApp.V1.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<Post>> Get(CancellationToken cancellationToken)
         {
             return await _postRepository.Get(cancellationToken);
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<Post>> Get(string id, CancellationToken cancellationToken)
         {
-            var post = await _postRepository.Get(new ObjectId(id), cancellationToken);
+            var post = await _postRepository.Get(id, cancellationToken);
 
             if (post == null)
             {
@@ -57,14 +58,14 @@ namespace BlogApp.V1.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, Post postIn, CancellationToken cancellationToken)
         {
-            var post = await _postRepository.Get(new ObjectId(id), cancellationToken);
+            var post = await _postRepository.Get(id, cancellationToken);
 
             if (post == null)
             {
                 return NotFound();
             }
 
-            await _postRepository.Update(new ObjectId(id), postIn, cancellationToken);
+            await _postRepository.Update(id, postIn, cancellationToken);
 
             return Ok();
         }
@@ -72,7 +73,7 @@ namespace BlogApp.V1.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
         {
-            var post = await _postRepository.Get(new ObjectId(id), cancellationToken);
+            var post = await _postRepository.Get(id, cancellationToken);
 
             if (post == null)
             {

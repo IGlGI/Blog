@@ -1,7 +1,9 @@
 export interface Post {
   id?: string;
-  title: string;
   text: string;
+  title: string;
   author: string;
-  date: Date;
+  created?: Date;
+  modified: Date;
+  isDeleted?: boolean;
 }

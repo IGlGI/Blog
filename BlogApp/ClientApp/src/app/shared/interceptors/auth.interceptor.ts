@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {catchError} from 'rxjs/operators';
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpParams, HttpRequest} from '@angular/common/http';
+import {HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {AuthService} from '../../admin/shared/services/auth.service';
 
@@ -11,16 +11,14 @@ export class AuthInterceptor implements HttpInterceptor{
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {
-  }
+  ) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.authService.isLoggedIn()){
-      req = req.clone({
-        headers: new HttpHeaders(this.authService.getAuthorizationHeaderValue()),
-      });
-    }
-    return next.handle(req)
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    const headers = this.SetAuthHeader(request);
+    request = request.clone({ headers });
+
+    return next.handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           console.warn('Interceptor error: ', error);
@@ -35,5 +33,20 @@ export class AuthInterceptor implements HttpInterceptor{
           return throwError(error);
         })
       );
+  }
+
+  private SetAuthHeader(request: HttpRequest<any>): HttpHeaders {
+    const token = this.authService.getAuthorizationHeaderValue();
+    const headerSettings: {[name: string]: string | string[]; } = {};
+
+    for (const key of request.headers.keys()) {
+      headerSettings[key] = request.headers.getAll(key);
+    }
+    if (token) {
+      headerSettings.Authorization = token;
+    }
+
+    headerSettings.accept = 'text/plain';
+    return new HttpHeaders(headerSettings);
   }
 }

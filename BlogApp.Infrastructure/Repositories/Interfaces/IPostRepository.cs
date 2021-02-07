@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace BlogApp.Infrastructure.Repositories.Interfaces
 {
-    public interface IPostRepository : IRepository<Post, ObjectId>
+    public interface IPostRepository : IRepository<Post, string>
     {
     }
 }

@@ -1,27 +1,82 @@
-﻿using BlogApp.Infrastructure.Repositories.Interfaces;
+﻿using AutoMapper;
+using BlogApp.Domain;
+using BlogApp.Infrastructure.Repositories.Interfaces;
 using BogApp.Entities;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlogApp.Infrastructure.Repositories
 {
-    public class PostRepository : MongoBaseRepository<Post, ObjectId>, IPostRepository
+    public class PostRepository : MongoBaseRepository<PostDto, ObjectId>, IPostRepository
     {
-        public PostRepository(IMongoDatabase database, ILoggerFactory loggerFactory)
+        private readonly IMapper _mapper;
+
+        public PostRepository(IMapper mapper, IMongoDatabase database, ILoggerFactory loggerFactory)
             : base(database, loggerFactory, "Posts")
         {
+            _mapper = mapper;
         }
 
-        public async Task<ObjectId> Create(Post entity, CancellationToken cancellationToken)
+        public async Task<string> Create(Post post, CancellationToken cancellationToken)
         {
-            entity.Id = ObjectId.GenerateNewId(DateTime.Now);
-            await base.Create(entity, cancellationToken);
+            var postDto = _mapper.Map<PostDto>(post);
+            postDto.Id = ObjectId.GenerateNewId(DateTime.Now);
 
-            return entity.Id;
+            await base.Create(postDto, cancellationToken);
+            return postDto.Id.ToString();
+        }
+
+        public async Task<Post> Get(string id, CancellationToken cancellationToken)
+        {
+            var post = await base.Get(new ObjectId(id), cancellationToken);
+
+            if (post == null)
+            {
+                return null;
+            }
+            return _mapper.Map<Post>(post);
+        }
+
+        public async Task<IEnumerable<Post>> Get(CancellationToken cancellationToken)
+        {
+            var postDtos = await base.Get(cancellationToken);
+
+            if (!postDtos.Any())
+            {
+                return null;
+            }
+
+            var posts = new List<Post>();
+
+            postDtos.ToList().ForEach(postDto =>
+            {
+                posts.Add(_mapper.Map<Post>(postDto));
+            });
+
+            return posts;
+        }
+
+        public async Task Remove(Post post, CancellationToken cancellationToken)
+        {
+            var postDto = _mapper.Map<PostDto>(post);
+            await base.Remove(postDto, cancellationToken);
+        }
+
+        public async Task Remove(string id, CancellationToken cancellationToken)
+        {
+            await base.Remove(new ObjectId(id), cancellationToken);
+        }
+
+        public async Task Update(string id, Post post, CancellationToken cancellationToken)
+        {
+            var postDto = _mapper.Map<PostDto>(post);
+            await base.Update(new ObjectId(id), postDto, cancellationToken);
         }
     }
 }

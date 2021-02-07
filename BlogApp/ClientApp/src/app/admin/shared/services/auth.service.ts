@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { UserManager, UserManagerSettings, User } from 'oidc-client';
 import { environment } from '../../../../environments/environment';
 
@@ -18,7 +17,6 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    console.log(this.user);
     return this.user != null && !this.user.expired;
   }
 
@@ -27,7 +25,7 @@ export class AuthService {
   }
 
   getAuthorizationHeaderValue(): string {
-    return `${this.user.token_type} ${this.user.access_token}`;
+    return `${this.user?.token_type} ${this.user?.access_token}`;
   }
 
   startAuthentication(): Promise<void> {
@@ -49,8 +47,8 @@ export function getClientSettings(): UserManagerSettings {
   return {
     authority: environment.isConnectionString,
     client_id: 'BlogAppClient',
-    redirect_uri: `${environment.selfAddress}/admin/callback`,
-    post_logout_redirect_uri: environment.selfAddress,
+    redirect_uri: `${environment.serverConnectionString}/admin/callback`,
+    post_logout_redirect_uri: environment.serverConnectionString,
     response_type: 'id_token token',
     scope: 'openid profile Blog_App_Api',
     filterProtocolClaims: true,

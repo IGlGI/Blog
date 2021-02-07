@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlogApp.Common\BlogApp.Common.csproj" />
+    <ProjectReference Include="..\BogApp.Entities\BogApp.Entities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
 ﻿using BlogApp.Common.Constants;
-using BogApp.Entities;
+using BlogApp.Common.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 

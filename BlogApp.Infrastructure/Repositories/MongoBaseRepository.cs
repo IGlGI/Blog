@@ -1,4 +1,4 @@
-﻿using BogApp.Entities;
+﻿using BlogApp.Common.Entities;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using System;
