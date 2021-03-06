@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Flurl;
-using Flurl.Http;
 using BlogApp.Common.Entities;
 
 namespace BlogApp.Configurations

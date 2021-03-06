@@ -1,7 +1,6 @@
 ﻿using IdentityServer4.AccessTokenValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Flurl;
-using Flurl.Http;
 using BlogApp.Common.Constants;
 using BlogApp.Common.Entities;
 

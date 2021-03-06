@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,14 +41,12 @@ namespace BlogApp
             services.AddHttpClient();
 
             services.AddAutoMapper(typeof(Post));
-            services.AddTransient<IMongoClient>(client => new MongoClient(appSettings.DbConnectionString));
-            services.AddTransient<IMongoDatabase>(services =>
+            services.AddTransient<IMongoClient>(_ => new MongoClient(appSettings.DbConnectionString));
+            services.AddTransient(serviceProvider =>
             {
-                using (var scope = services.CreateScope())
-                {
-                    var client = scope.ServiceProvider.GetRequiredService<IMongoClient>();
-                    return client.GetDatabase(appSettings.DbName);
-                }
+                using var scope = serviceProvider.CreateScope();
+                var client = scope.ServiceProvider.GetRequiredService<IMongoClient>();
+                return client.GetDatabase(appSettings.DbName);
             });
 
             services.AddTransient<IPostRepository, PostRepository>();

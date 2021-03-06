@@ -1,6 +1,4 @@
-﻿using BlogApp.Common.Constants;
-using BlogApp.Common.Extensions;
-using IdentityServer4;
+﻿using BlogApp.Common.Extensions;
 using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -17,8 +17,8 @@ namespace BlogApp.Swagger
 
             operation.Deprecated |= apiDescription.IsDeprecated();
 
-            var hasAuthorize = context.MethodInfo.DeclaringType.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any() ||
-                               context.MethodInfo.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any();
+            var hasAuthorize = context.MethodInfo.DeclaringType is not null && (context.MethodInfo.DeclaringType.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any() ||
+                context.MethodInfo.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any());
 
             if (hasAuthorize)
             {

@@ -33,7 +33,7 @@ namespace BlogApp.Infrastructure.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError($"An error occurred while creating the object with id: {entity.Id}. Error: {e.Message}");
+                _logger.LogError(e, "An error occurred while creating the object with id: {EntityId}", entity.Id);
                 throw;
             }
         }
@@ -45,11 +45,11 @@ namespace BlogApp.Infrastructure.Repositories
                 cancellationToken.ThrowIfCancellationRequested();
 
                 var result = await _collection.FindAsync(entity => true, cancellationToken: cancellationToken);
-                return result.ToList();
+                return result.ToList(cancellationToken: cancellationToken);
             }
             catch (Exception e)
             {
-                _logger.LogError($"An error occurred while getting all objects. Error: {e.Message}");
+                _logger.LogError(e, "An error occurred while getting all objects");
                 throw;
             }
         }
@@ -60,12 +60,12 @@ namespace BlogApp.Infrastructure.Repositories
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                var result = await _collection.FindAsync<TEntity>(entity => entity.Id.Equals(id), cancellationToken: cancellationToken);
-                return result.FirstOrDefault();
+                var result = await _collection.FindAsync(entity => entity.Id.Equals(id), cancellationToken: cancellationToken);
+                return result.FirstOrDefault(cancellationToken: cancellationToken);
             }
             catch (Exception e)
             {
-                _logger.LogError($"An error occurred while getting the object with id: {id}. Error: {e.Message}");
+                _logger.LogError(e, "An error occurred while getting the object");
                 throw;
             }
         }
@@ -78,7 +78,7 @@ namespace BlogApp.Infrastructure.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError($"An error occurred while removing the object with id: {entity.Id}. Error: {e.Message}");
+                _logger.LogError(e, "An error occurred while removing the object");
                 throw;
             }
         }
@@ -91,7 +91,7 @@ namespace BlogApp.Infrastructure.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError($"An error occurred while removing the object with id: {id}. Error: {e.Message}");
+                _logger.LogError(e,"An error occurred while removing the object");
                 throw;
             }
         }
@@ -108,7 +108,7 @@ namespace BlogApp.Infrastructure.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError($"An error occurred while updating the object with id: {id}. Error: {e.Message}");
+                _logger.LogError(e, "An error occurred while updating the object");
                 throw;
             }
         }

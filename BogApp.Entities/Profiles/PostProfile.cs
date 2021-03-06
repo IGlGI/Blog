@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using BlogApp.Domain;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BogApp.Entities.Profiles
 {

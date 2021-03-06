@@ -43,20 +43,19 @@ namespace BlogApp.Infrastructure.Repositories
             return _mapper.Map<Post>(post);
         }
 
-        public async Task<IEnumerable<Post>> Get(CancellationToken cancellationToken)
+        public new async Task<IEnumerable<Post>> Get(CancellationToken cancellationToken)
         {
-            var postDtos = await base.Get(cancellationToken);
+            var postDto = await base.Get(cancellationToken);
 
-            if (!postDtos.Any())
+            var postDtoArray = postDto as PostDto[] ?? postDto.ToArray();
+            if (!postDtoArray.Any())
             {
                 return null;
             }
-
             var posts = new List<Post>();
-
-            postDtos.ToList().ForEach(postDto =>
+            postDtoArray.ToList().ForEach(dto =>
             {
-                posts.Add(_mapper.Map<Post>(postDto));
+                posts.Add(_mapper.Map<Post>(dto));
             });
 
             return posts;

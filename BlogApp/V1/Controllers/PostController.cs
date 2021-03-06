@@ -47,7 +47,7 @@ namespace BlogApp.V1.Controllers
         {
             var postId = await _postRepository.Create(post, cancellationToken);
 
-            if (string.IsNullOrWhiteSpace(postId.ToString()))
+            if (string.IsNullOrWhiteSpace(postId))
             {
                 return NotFound();
             }

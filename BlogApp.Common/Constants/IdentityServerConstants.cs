@@ -2,7 +2,7 @@
 {
     public static class IdentityServerConstants
     {
-        public const string ISCookieName = "IdentityServer.Cookies";
+        public const string IdentityServerCookieName = "IdentityServer.Cookies";
 
         public const string LocalApiScopeName = "IdentityServerApi";
 
