@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogApp.Common", "BlogApp.Common\BlogApp.Common.csproj", "{F728C09D-4A96-40F1-8FB0-C8FBA0AB51D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BogApp.Entities", "BogApp.Entities\BogApp.Entities.csproj", "{6647E339-5858-4075-AA51-FE58B22DE4B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogApp.Domain", "BlogApp.Domain\BlogApp.Domain.csproj", "{6647E339-5858-4075-AA51-FE58B22DE4B3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogApp.Infrastructure", "BlogApp.Infrastructure\BlogApp.Infrastructure.csproj", "{D675A529-0FD4-46C3-A055-8E5397C603B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.Domain", "BlogApp.Domain\BlogApp.Domain.csproj", "{304D52C3-94F8-49DA-AD2E-ACC90C6D5B80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp.Contracts", "BlogApp.Contracts\BlogApp.Contracts.csproj", "{304D52C3-94F8-49DA-AD2E-ACC90C6D5B80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

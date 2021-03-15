@@ -1,14 +1,14 @@
-﻿using BlogApp.Common.Entities;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlogApp.Infrastructure.Repositories
 {
-    public class MongoBaseRepository<TEntity, TId> where TEntity : Entity<TId>
+    public class MongoBaseRepository<TEntity>
     {
         private readonly ILogger _logger;
 
@@ -26,14 +26,11 @@ namespace BlogApp.Infrastructure.Repositories
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                entity.Created = DateTime.Now;
-                entity.Modified = DateTime.Now;
-
                 await _collection.InsertOneAsync(entity, cancellationToken: cancellationToken);
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "An error occurred while creating the object with id: {EntityId}", entity.Id);
+                _logger.LogError(e, "An error occurred while creating the object");
                 throw;
             }
         }
@@ -54,13 +51,13 @@ namespace BlogApp.Infrastructure.Repositories
             }
         }
 
-        public async Task<TEntity> Get(TId id, CancellationToken cancellationToken = default)
+        public async Task<TEntity> Get(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken = default)
         {
             try
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                var result = await _collection.FindAsync(entity => entity.Id.Equals(id), cancellationToken: cancellationToken);
+                var result = await _collection.FindAsync(expression, cancellationToken: cancellationToken);
                 return result.FirstOrDefault(cancellationToken: cancellationToken);
             }
             catch (Exception e)
@@ -70,11 +67,14 @@ namespace BlogApp.Infrastructure.Repositories
             }
         }
 
-        public async Task Remove(TEntity entity, CancellationToken cancellationToken)
+        public async Task<bool> Remove(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken)
         {
             try
             {
-                await _collection.DeleteOneAsync(e => e.Equals(entity), cancellationToken: cancellationToken);
+                cancellationToken.ThrowIfCancellationRequested();
+
+                var deleted = await _collection.DeleteOneAsync(expression, cancellationToken: cancellationToken);
+                return deleted.DeletedCount != 0;
             }
             catch (Exception e)
             {
@@ -83,28 +83,13 @@ namespace BlogApp.Infrastructure.Repositories
             }
         }
 
-        public async Task Remove(TId id, CancellationToken cancellationToken)
-        {
-            try
-            {
-                await _collection.DeleteOneAsync(e => e.Id.Equals(id), cancellationToken: cancellationToken);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e,"An error occurred while removing the object");
-                throw;
-            }
-        }
-
-        public async Task Update(TId id, TEntity entity, CancellationToken cancellationToken)
+        public async Task Update(Expression<Func<TEntity, bool>> expression, TEntity entity, CancellationToken cancellationToken)
         {
             try
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                entity.Id = id;
-                entity.Modified = DateTime.Now;
-                await _collection.ReplaceOneAsync(e => e.Id.Equals(id), entity, cancellationToken: cancellationToken);
+                await _collection.ReplaceOneAsync(expression, entity, cancellationToken: cancellationToken);
             }
             catch (Exception e)
             {

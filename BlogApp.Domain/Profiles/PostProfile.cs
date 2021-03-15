@@ -1,17 +1,16 @@
 ﻿using AutoMapper;
-using BlogApp.Domain;
+using BlogApp.Contracts;
 
-namespace BogApp.Entities.Profiles
+namespace BogApp.Domain.Profiles
 {
     public class PostProfile : Profile
     {
         public PostProfile()
         {
-            CreateMap<Post, PostDto>()
-                .ForMember(m => m.Id, i => i.Ignore())
+            CreateMap<PostRequest, Post>()
                 .IgnoreAllPropertiesWithAnInaccessibleSetter();
 
-            CreateMap<PostDto, Post>()
+            CreateMap<Post, GetPostResponse>()
                 .IgnoreAllPropertiesWithAnInaccessibleSetter();
         }
     }

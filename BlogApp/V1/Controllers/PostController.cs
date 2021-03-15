@@ -1,10 +1,12 @@
 ﻿using BlogApp.Infrastructure.Repositories.Interfaces;
-using BogApp.Entities;
+using BogApp.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using BlogApp.Contracts;
+using AutoMapper;
+using Microsoft.AspNetCore.Http;
 
 namespace BlogApp.V1.Controllers
 {
@@ -12,25 +14,28 @@ namespace BlogApp.V1.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("/api/[controller]")]
-    public class PostController : ControllerBase
+    public class PostController : BaseController
     {
         private readonly IPostRepository _postRepository;
+        private readonly IMapper _mapper;
 
-        public PostController(IPostRepository postRepository)
+        public PostController(IPostRepository postRepository, IMapper mapper)
         {
             _postRepository = postRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IEnumerable<Post>> Get(CancellationToken cancellationToken)
+        public async Task<IActionResult> Get(CancellationToken cancellationToken)
         {
-            return await _postRepository.Get(cancellationToken);
+            var posts = await _postRepository.Get(cancellationToken);
+            return Ok(posts);
         }
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<Post>> Get(string id, CancellationToken cancellationToken)
+        public async Task<IActionResult> Get(string id, CancellationToken cancellationToken)
         {
             var post = await _postRepository.Get(id, cancellationToken);
 
@@ -39,50 +44,39 @@ namespace BlogApp.V1.Controllers
                 return NotFound();
             }
 
-            return post;
+            return Ok(post);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Post>> Create(Post post, CancellationToken cancellationToken)
+        public async Task<IActionResult> Create(PostRequest postRequest, CancellationToken cancellationToken)
         {
+            var post = _mapper.Map<Post>(postRequest);
             var postId = await _postRepository.Create(post, cancellationToken);
+            var created = await _postRepository.Get(postId, cancellationToken);
 
-            if (string.IsNullOrWhiteSpace(postId))
-            {
-                return NotFound();
-            }
-
-            return await _postRepository.Get(postId, cancellationToken);
+            return Ok(created);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, Post postIn, CancellationToken cancellationToken)
+        public async Task<IActionResult> Update(string id, PostRequest postRequest, CancellationToken cancellationToken)
         {
-            var post = await _postRepository.Get(id, cancellationToken);
-
-            if (post == null)
+            if (await _postRepository.Update(id, postRequest, cancellationToken))
             {
-                return NotFound();
+                return Ok();
             }
 
-            await _postRepository.Update(id, postIn, cancellationToken);
-
-            return Ok();
+            return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken)
         {
-            var post = await _postRepository.Get(id, cancellationToken);
-
-            if (post == null)
+            if (await _postRepository.Remove(id, cancellationToken))
             {
-                return NotFound();
+                return Ok();
             }
 
-            await _postRepository.Remove(post.Id, cancellationToken);
-
-            return Ok();
+            return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
     }
 }

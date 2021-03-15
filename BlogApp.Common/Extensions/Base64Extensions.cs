@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
 namespace BlogApp.Common.Extensions
@@ -14,19 +13,6 @@ namespace BlogApp.Common.Extensions
         public static string Base64Encode(this string plainText)
         {
             return Convert.ToBase64String(Encoding.ASCII.GetBytes(plainText));
-        }
-
-        public static string Base64EncodeFile(string path)
-        {
-            try
-            {
-                var bytes = File.ReadAllBytes(path);
-                return Convert.ToBase64String(bytes);
-            }
-            catch
-            {
-                return null;
-            }
         }
     }
 }

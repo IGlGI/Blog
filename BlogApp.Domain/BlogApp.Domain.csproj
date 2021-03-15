@@ -2,10 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>BogApp.Entities</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BlogApp.Common\BlogApp.Common.csproj" />
+    <ProjectReference Include="..\BlogApp.Contracts\BlogApp.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.15.0" />
   </ItemGroup>
 
 </Project>

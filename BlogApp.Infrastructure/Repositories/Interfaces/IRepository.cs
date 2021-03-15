@@ -14,8 +14,6 @@ namespace BlogApp.Infrastructure.Repositories.Interfaces
 
         public Task Update(TId id, TEntity entity, CancellationToken cancellationToken);
 
-        public Task Remove(TEntity entity, CancellationToken cancellationToken);
-
-        public Task Remove(TId id, CancellationToken cancellationToken);
+        public Task<bool> Remove(TId id, CancellationToken cancellationToken);
     }
 }

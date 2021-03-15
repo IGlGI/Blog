@@ -2,11 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>BlogApp.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BlogApp.Common\BlogApp.Common.csproj" />
-    <ProjectReference Include="..\BlogApp.Domain\BlogApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.5.2" />
   </ItemGroup>
 
 </Project>

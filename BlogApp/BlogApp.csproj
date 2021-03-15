@@ -18,7 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.2" />
+    <PackageReference Include="FluentValidation" Version="9.5.2" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.2" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,8 +36,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlogApp.Common\BlogApp.Common.csproj" />
+    <ProjectReference Include="..\BlogApp.Domain\BlogApp.Domain.csproj" />
     <ProjectReference Include="..\BlogApp.Infrastructure\BlogApp.Infrastructure.csproj" />
-    <ProjectReference Include="..\BogApp.Entities\BogApp.Entities.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

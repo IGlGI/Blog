@@ -13,7 +13,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using BlogApp.Common.Constants;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using MongoDB.Driver;
-using BogApp.Entities;
+using BogApp.Domain;
+using FluentValidation.AspNetCore;
+using BlogApp.Contracts.Validators;
 
 namespace BlogApp
 {
@@ -51,7 +53,9 @@ namespace BlogApp
 
             services.AddTransient<IPostRepository, PostRepository>();
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers()
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining(typeof(CreatePostRequestValidator)))
+                    .AddNewtonsoftJson();
 
             services.AddLogging(x => x.AddSerilog(new LoggerConfiguration().ReadFrom.Configuration(_configuration).CreateLogger()));
             services.TryAdd(ServiceDescriptor.Singleton<ILoggerFactory, LoggerFactory>());
