@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Post} from '../shared/models/post.model';
+import {PostResponse} from '../shared/models/post-response.model';
 import {ActivatedRoute, Params} from '@angular/router';
 import {PostsService} from '../shared/services/posts.service';
 import {Observable} from 'rxjs';
@@ -12,7 +12,7 @@ import {switchMap} from 'rxjs/operators';
 })
 export class PostPageComponent implements OnInit {
 
-  post$: Observable<Post>;
+  post$: Observable<PostResponse>;
 
   constructor(
     private route: ActivatedRoute,

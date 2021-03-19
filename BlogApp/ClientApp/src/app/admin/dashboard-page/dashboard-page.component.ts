@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PostsService} from '../../shared/services/posts.service';
-import {Post} from '../../shared/models/post.model';
+import {PostResponse} from '../../shared/models/post-response.model';
 import {Subscription} from 'rxjs';
 import {AlertService} from '../shared/services/alert.service';
 import {AuthService} from '../shared/services/auth.service';
@@ -12,7 +12,7 @@ import {AuthService} from '../shared/services/auth.service';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy{
 
-  posts: Post[];
+  posts: PostResponse[];
   searchStr = '';
   pSub: Subscription;
   rSub: Subscription;
@@ -26,6 +26,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.pSub = this.postsService.getAll().subscribe(result => {
+      console.log(result);
       this.posts = result;
     });
   }

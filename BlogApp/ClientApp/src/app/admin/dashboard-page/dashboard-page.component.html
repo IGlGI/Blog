@@ -16,7 +16,7 @@
     <tbody>
       <tr *ngFor="let post of posts | searchItem:searchStr:'title'; let idx= index">
         <td>{{idx + 1}}</td>
-        <td>{{ post.author }}</td>
+        <td>{{ post.authorName }}</td>
         <td>{{ post.title }}</td>
         <td>{{ post.modified | date: 'medium':undefined:'en'}}</td>
         <td>

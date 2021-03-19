@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Post} from '../../shared/models/post.model';
+import {PostResponse} from '../../shared/models/post-response.model';
 import {PostsService} from '../../shared/services/posts.service';
 import {AlertService} from '../shared/services/alert.service';
+import {PostRequest} from '../../shared/models/post-request';
 
 @Component({
   selector: 'app-create-page',
@@ -32,11 +33,10 @@ export class CreatePageComponent implements OnInit {
       return;
     }
 
-    const post: Post = {
+    const post: PostRequest = {
       title: this.form.value.title,
       text: this.form.value.text,
-      author: this.form.value.author,
-      modified: new Date(),
+      authorName: this.form.value.author
     };
 
     this.postsService.create(post).subscribe(() => {

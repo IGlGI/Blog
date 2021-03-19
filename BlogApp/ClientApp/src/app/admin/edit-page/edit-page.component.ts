@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {PostsService} from '../../shared/services/posts.service';
 import {switchMap} from 'rxjs/operators';
-import {Post} from '../../shared/models/post.model';
+import {PostResponse} from '../../shared/models/post-response.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {AlertService} from '../shared/services/alert.service';
@@ -15,7 +15,7 @@ import {AlertService} from '../shared/services/alert.service';
 export class EditPageComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
-  post: Post;
+  post: PostResponse;
   uSub: Subscription;
   submitted: boolean;
 
@@ -32,7 +32,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       switchMap( (params: Params) => {
         return this.postsService.getById(params.id);
       })
-    ).subscribe( (post: Post) => {
+    ).subscribe( (post: PostResponse) => {
       this.post = post;
       this.form = new FormGroup({
         title: new FormControl(post.title, [Validators.required]),
