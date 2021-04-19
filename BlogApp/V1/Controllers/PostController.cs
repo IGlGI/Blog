@@ -1,11 +1,9 @@
 ﻿using BlogApp.Infrastructure.Repositories.Interfaces;
-using BogApp.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
 using BlogApp.Contracts;
-using AutoMapper;
 using Microsoft.AspNetCore.Http;
 
 namespace BlogApp.V1.Controllers
@@ -17,12 +15,17 @@ namespace BlogApp.V1.Controllers
     public class PostController : BaseController
     {
         private readonly IPostRepository _postRepository;
-        private readonly IMapper _mapper;
 
-        public PostController(IPostRepository postRepository, IMapper mapper)
+        public PostController(IPostRepository postRepository)
         {
             _postRepository = postRepository;
-            _mapper = mapper;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(PostRequest postRequest, CancellationToken cancellationToken)
+        {
+            var created = await _postRepository.Create(postRequest, cancellationToken);
+            return Ok(created);
         }
 
         [HttpGet]
@@ -45,16 +48,6 @@ namespace BlogApp.V1.Controllers
             }
 
             return Ok(post);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(PostRequest postRequest, CancellationToken cancellationToken)
-        {
-            var post = _mapper.Map<Post>(postRequest);
-            var postId = await _postRepository.Create(post, cancellationToken);
-            var created = await _postRepository.Get(postId, cancellationToken);
-
-            return Ok(created);
         }
 
         [HttpPut("{id}")]

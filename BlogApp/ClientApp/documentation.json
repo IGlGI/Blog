@@ -1,0 +1,3047 @@
+{
+    "pipes": [
+        {
+            "name": "SearchPipe",
+            "id": "pipe-SearchPipe-b47217f8865f2619e9e7d19ef3928e24",
+            "file": "src/app/shared/pipes/search.pipe.ts",
+            "type": "pipe",
+            "description": "",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "transform",
+                    "args": [
+                        {
+                            "name": "items",
+                            "type": "any[]"
+                        },
+                        {
+                            "name": "search",
+                            "type": "string"
+                        },
+                        {
+                            "name": "prop",
+                            "type": "string",
+                            "defaultValue": "'name'"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 8,
+                    "jsdoctags": [
+                        {
+                            "name": "items",
+                            "type": "any[]",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "search",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "prop",
+                            "type": "string",
+                            "defaultValue": "'name'",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "ngname": "searchItem",
+            "sourceCode": "import {Pipe, PipeTransform} from '@angular/core';\r\n\r\n@Pipe({\r\n  name: 'searchItem'\r\n})\r\nexport class SearchPipe implements PipeTransform {\r\n\r\n  transform(items: any[], search: string, prop: string = 'name'): any {\r\n    if (!search.trim()){\r\n      return items;\r\n    }\r\n\r\n    return items?.filter((item) => {\r\n      return item[prop].toLowerCase().includes(search.toLowerCase());\r\n    });\r\n  }\r\n}\r\n"
+        }
+    ],
+    "interfaces": [
+        {
+            "name": "Alert",
+            "id": "interface-Alert-ad738d0a0804999720de323b8737713f",
+            "file": "src/app/shared/models/alert.model.ts",
+            "type": "interface",
+            "sourceCode": "export type AlertType = 'success' | 'danger' | 'warning';\r\n\r\nexport interface Alert {\r\n  type: AlertType;\r\n  text: string;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "type",
+                    "type": "AlertType",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "Envelope",
+            "id": "interface-Envelope-1f38c2f021ea76933eedebb947dfe56f",
+            "file": "src/app/shared/models/envelope.ts",
+            "type": "interface",
+            "sourceCode": "export interface Envelope {\r\n  result: any;\r\n  error: any;\r\n  timestamp: any;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "error",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "result",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "timestamp",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "Environment",
+            "id": "interface-Environment-edecb82bf5ce1d1fcb68de5d3a40d602",
+            "file": "src/environments/interface.ts",
+            "type": "interface",
+            "sourceCode": "export interface Environment {\r\n  production: boolean;\r\n  serverConnectionString: string;\r\n  isConnectionString: string;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "isConnectionString",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "production",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "serverConnectionString",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "FbAuthResponse",
+            "id": "interface-FbAuthResponse-992bdb94ee373a92612f22a632e0f647",
+            "file": "src/app/shared/models/fb-auth-response.model.ts",
+            "type": "interface",
+            "sourceCode": "export interface FbAuthResponse {\r\n  displayName: string;\r\n  email: string;\r\n  expiresIn: string;\r\n  idToken: string;\r\n  kind: string;\r\n  localId: string;\r\n  refreshToken: string;\r\n  registered: boolean;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "displayName",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "email",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "expiresIn",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "idToken",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "kind",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "localId",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "refreshToken",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "registered",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "FbCreateResponse",
+            "id": "interface-FbCreateResponse-648b3eb04ea646e4a55378f84869dcf3",
+            "file": "src/app/shared/models/fb-create-response.model.ts",
+            "type": "interface",
+            "sourceCode": "export interface FbCreateResponse {\r\n  name: string;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "PostRequest",
+            "id": "interface-PostRequest-3204d8c644c4fc6c6a0770da1aa72330",
+            "file": "src/app/shared/models/post-request.ts",
+            "type": "interface",
+            "sourceCode": "export interface PostRequest {\r\n  text: string;\r\n  title: string;\r\n  authorName: string;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "authorName",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "title",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "PostResponse",
+            "id": "interface-PostResponse-30204ab89f005944015039742743dd83",
+            "file": "src/app/shared/models/post-response.model.ts",
+            "type": "interface",
+            "sourceCode": "export interface PostResponse {\r\n  id: string;\r\n  text: string;\r\n  title: string;\r\n  authorName: string;\r\n  created?: Date;\r\n  modified: Date;\r\n  isDeleted?: boolean;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "authorName",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "created",
+                    "type": "Date",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "id",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "isDeleted",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "modified",
+                    "type": "Date",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "title",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "AlertService",
+            "id": "injectable-AlertService-46d29fd8ee8f3cbc1b45d882e98185e4",
+            "file": "src/app/admin/shared/services/alert.service.ts",
+            "properties": [
+                {
+                    "name": "alert$",
+                    "defaultValue": "new Subject<Alert>()",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "danger",
+                    "args": [
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "jsdoctags": [
+                        {
+                            "name": "text",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "success",
+                    "args": [
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "jsdoctags": [
+                        {
+                            "name": "text",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "warning",
+                    "args": [
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
+                    "jsdoctags": [
+                        {
+                            "name": "text",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport {Subject} from 'rxjs';\nimport {Alert} from '../../../shared/models/alert.model';\n\n@Injectable()\nexport class AlertService {\n\n  public alert$ = new Subject<Alert>();\n\n  constructor() { }\n\n  success(text: string): void{\n    this.alert$.next({type: 'success', text});\n  }\n\n  danger(text: string): void{\n    this.alert$.next({type: 'danger', text});\n  }\n\n  warning(text: string): void{\n    this.alert$.next({type: 'warning', text});\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 8
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "AuthService",
+            "id": "injectable-AuthService-f9fb79c88b952e16765508d3dd4bf203",
+            "file": "src/app/admin/shared/services/auth.service.ts",
+            "properties": [
+                {
+                    "name": "manager",
+                    "defaultValue": "new UserManager(getClientSettings())",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        112
+                    ]
+                },
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "type": "User",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        112
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "completeAuthentication",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 39
+                },
+                {
+                    "name": "getAuthorizationHeaderValue",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 27
+                },
+                {
+                    "name": "getClaims",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 23
+                },
+                {
+                    "name": "isLoggedIn",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 19
+                },
+                {
+                    "name": "logout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 35
+                },
+                {
+                    "name": "startAuthentication",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<void>",
+                    "typeParameters": [],
+                    "line": 31
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { UserManager, UserManagerSettings, User } from 'oidc-client';\nimport { environment } from '../../../../environments/environment';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class AuthService {\n\n  private manager = new UserManager(getClientSettings());\n  private user: User = null;\n\n  constructor() {\n    this.manager.getUser().then(user => {\n      this.user = user;\n    });\n  }\n\n  isLoggedIn(): boolean {\n    return this.user != null && !this.user.expired;\n  }\n\n  getClaims(): any {\n    return this.user.profile;\n  }\n\n  getAuthorizationHeaderValue(): string {\n    return `${this.user?.token_type} ${this.user?.access_token}`;\n  }\n\n  startAuthentication(): Promise<void> {\n    return this.manager.signinRedirect();\n  }\n\n  logout(): Promise<void> {\n    return this.manager.signoutRedirect();\n  }\n\n  completeAuthentication(): Promise<void> {\n    return this.manager?.signinRedirectCallback().then(user => {\n      this.user = user;\n    });\n  }\n}\n\nexport function getClientSettings(): UserManagerSettings {\n  return {\n    authority: environment.isConnectionString,\n    client_id: 'BlogAppClient',\n    redirect_uri: `${environment.serverConnectionString}/admin/callback`,\n    post_logout_redirect_uri: environment.serverConnectionString,\n    response_type: 'id_token token',\n    scope: 'openid profile Blog_App_Api',\n    filterProtocolClaims: true,\n    loadUserInfo: true\n  };\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 11
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "PostsService",
+            "id": "injectable-PostsService-59976f9e39506054d2fa81068e2f0de7",
+            "file": "src/app/shared/services/posts.service.ts",
+            "properties": [
+                {
+                    "name": "postApiUrl",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        112,
+                        132
+                    ]
+                },
+                {
+                    "name": "v1ApiParams",
+                    "type": "HttpParams",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "modifierKind": [
+                        112,
+                        132
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "create",
+                    "args": [
+                        {
+                            "name": "post",
+                            "type": "PostRequest"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 23,
+                    "jsdoctags": [
+                        {
+                            "name": "post",
+                            "type": "PostRequest",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "delete",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<void>",
+                    "typeParameters": [],
+                    "line": 54,
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getAll",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<PostResponse[]>",
+                    "typeParameters": [],
+                    "line": 32
+                },
+                {
+                    "name": "getById",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<PostResponse>",
+                    "typeParameters": [],
+                    "line": 41,
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setV1Api",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "HttpParams",
+                    "typeParameters": [],
+                    "line": 58,
+                    "modifierKind": [
+                        112
+                    ]
+                },
+                {
+                    "name": "update",
+                    "args": [
+                        {
+                            "name": "post",
+                            "type": "PostResponse"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<PostResponse>",
+                    "typeParameters": [],
+                    "line": 50,
+                    "jsdoctags": [
+                        {
+                            "name": "post",
+                            "type": "PostResponse",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport {HttpClient, HttpParams} from '@angular/common/http';\nimport {Observable} from 'rxjs';\nimport {PostResponse} from '../models/post-response.model';\nimport {environment} from '../../../environments/environment';\nimport {FbCreateResponse} from '../models/fb-create-response.model';\nimport {map} from 'rxjs/operators';\nimport {PostRequest} from '../models/post-request';\nimport {Envelope} from '../models/envelope';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class PostsService {\n  private readonly postApiUrl: string;\n  private readonly v1ApiParams: HttpParams;\n\n  constructor(private http: HttpClient) {\n    this.postApiUrl = `${environment.serverConnectionString}/api/post`;\n    this.v1ApiParams = this.setV1Api();\n  }\n\n  create(post: PostRequest): Observable<any>{\n    return this.http.post<any>(this.postApiUrl, post, { params: this.v1ApiParams })\n      .pipe(\n        map((response: Envelope) => {\n          return response.result;\n        })\n      );\n  }\n\n  getAll(): Observable<PostResponse[]>{\n    return this.http.get(this.postApiUrl, { params: this.v1ApiParams })\n      .pipe(\n        map((response: Envelope) => {\n          return response.result;\n        })\n      );\n  }\n\n  getById(id: string): Observable<PostResponse>{\n    return this.http.get<any>(`${this.postApiUrl}/${id}`, { params: this.v1ApiParams })\n      .pipe(\n        map((response: Envelope) => {\n          return response.result;\n        })\n    );\n  }\n\n  update(post: PostResponse): Observable<PostResponse>{\n    return this.http.put<PostResponse>(`${this.postApiUrl}/${post.id}`, post, { params: this.v1ApiParams });\n  }\n\n  delete(id: string): Observable<void>{\n    return this.http.delete<void>(`${this.postApiUrl}/${id}`, { params: this.v1ApiParams });\n  }\n\n  private setV1Api(): HttpParams {\n    let params = new HttpParams();\n    params = params.append('api-version', '1.0');\n    return params;\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient"
+                    }
+                ],
+                "line": 16,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AdminLayoutComponent",
+            "id": "component-AdminLayoutComponent-3a619b903fa7b39cad98a722d0b89d88",
+            "file": "src/app/admin/shared/components/admin-layout/admin-layout.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-admin-layout",
+            "styleUrls": [
+                "./admin-layout.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./admin-layout.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "authService",
+                    "type": "AuthService",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "logout",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 15
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport {AuthService} from '../../services/auth.service';\n\n@Component({\n  selector: 'app-admin-layout',\n  templateUrl: './admin-layout.component.html',\n  styleUrls: ['./admin-layout.component.scss']\n})\nexport class AdminLayoutComponent implements OnInit {\n\n  constructor(\n    public authService: AuthService,\n  ) { }\n\n  ngOnInit(): void {\n  }\n\n  logout(event: Event): void {\n    event.preventDefault();\n    this.authService.logout();\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./admin-layout.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService"
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<app-alert></app-alert>\n\n<nav class=\"navbar bg-primary\" *ngIf=\"authService.isLoggedIn()\">\n  <h1>\n    <a routerLink=\"/\">Administration</a>\n  </h1>\n\n  <ul *ngIf=\"authService.isLoggedIn()\">\n    <li routerLinkActive=\"active\">\n      <a [routerLink]=\"['/admin', 'dashboard']\">Main</a>\n    </li>\n    <li routerLinkActive=\"active\">\n      <a [routerLink]=\"['/admin', 'create']\">Create</a>\n    </li>\n    <li>\n      <a href=\"#\" (click)=\"logout($event)\">Logout</a>\n    </li>\n  </ul>\n</nav>\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>\n"
+        },
+        {
+            "name": "AlertComponent",
+            "id": "component-AlertComponent-4dfcf95435ec08868b47be4ddae84dcf",
+            "file": "src/app/admin/shared/components/alert/alert.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-alert",
+            "styleUrls": [
+                "./alert.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./alert.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "delay",
+                    "defaultValue": "5000",
+                    "line": 12
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "aSub",
+                    "type": "Subscription",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        114
+                    ]
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'success'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 32
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {Component, Input, OnDestroy, OnInit} from '@angular/core';\nimport {AlertService} from '../../services/alert.service';\nimport {Subscription} from 'rxjs';\n\n@Component({\n  selector: 'app-alert',\n  templateUrl: './alert.component.html',\n  styleUrls: ['./alert.component.scss']\n})\nexport class AlertComponent implements OnInit, OnDestroy {\n\n  @Input() delay = 5000;\n  public text: string;\n  public type = 'success';\n\n  aSub: Subscription;\n\n  constructor(private alertService: AlertService) { }\n\n  ngOnInit(): void {\n    this.aSub = this.alertService.alert$.subscribe( (alert) => {\n      this.type = alert.type;\n      this.text = alert.text;\n\n      const timeout = setTimeout(() => {\n        clearTimeout(timeout);\n        this.text = '';\n      }, this.delay);\n    });\n  }\n\n  ngOnDestroy(): void {\n    this.aSub?.unsubscribe();\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".alert-wrap {\r\n  position: fixed;\r\n  top: 50px;\r\n  right: 40px;\r\n  max-width: 200px;\r\n  z-index: 999;\r\n}\r\n",
+                    "styleUrl": "./alert.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService"
+                    }
+                ],
+                "line": 16,
+                "jsdoctags": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ],
+            "templateData": "<div class=\"alert-wrap\" *ngIf=\"text\">\n  <div\n    class=\"alert\"\n    [ngClass]=\"{\n    'alert-success': type === 'success',\n    'alert-warning': type === 'warning',\n    'alert-danger': type === 'danger'\n    }\"\n  >\n  {{ text }}\n  </div>\n</div>\n"
+        },
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-8fbd201a1f2a344dde9a7dc241c39c5c",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent {\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<router-outlet></router-outlet>\r\n"
+        },
+        {
+            "name": "AuthCallbackComponent",
+            "id": "component-AuthCallbackComponent-28e9910093856d5d7259d2963c241cf7",
+            "file": "src/app/admin/shared/components/auth-callback/auth-callback.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-auth-callback",
+            "styleUrls": [],
+            "styles": [],
+            "template": "",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport {AuthService} from '../../services/auth.service';\nimport {Router} from '@angular/router';\n\n@Component({\n  selector: 'app-auth-callback',\n  template: '',\n})\nexport class AuthCallbackComponent implements OnInit {\n\n  constructor(\n    private authService: AuthService,\n    private router: Router\n  ) { }\n\n  ngOnInit(): void {\n    this.authService.completeAuthentication().then(() => {\n      this.router.navigate(['/admin', 'dashboard']);\n    });\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService"
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router"
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ]
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-642c6c4e474cd5a0ac760dfda26b2fc9",
+            "file": "src/stories/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-button",
+            "styleUrls": [
+                "./button.css"
+            ],
+            "styles": [],
+            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "description": "<p>What background color to use</p>\n",
+                    "line": 26,
+                    "type": "string"
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 40
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 20
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 32,
+                    "type": "\"small\" | \"medium\" | \"large\""
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 46,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-button {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "styleUrl": "./button.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 48
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePageComponent",
+            "id": "component-CreatePageComponent-256abd259dafc972bd9822734b5ea13d",
+            "file": "src/app/admin/create-page/create-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-create-page",
+            "styleUrls": [
+                "./create-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./create-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "form",
+                    "type": "FormGroup",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28
+                },
+                {
+                    "name": "submit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 31
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport {FormControl, FormGroup, Validators} from '@angular/forms';\nimport {PostResponse} from '../../shared/models/post-response.model';\nimport {PostsService} from '../../shared/services/posts.service';\nimport {AlertService} from '../shared/services/alert.service';\nimport {PostRequest} from '../../shared/models/post-request';\n\n@Component({\n  selector: 'app-create-page',\n  templateUrl: './create-page.component.html',\n  styleUrls: ['./create-page.component.scss']\n})\nexport class CreatePageComponent implements OnInit {\n\n  form: FormGroup;\n\n  constructor(\n    private postsService: PostsService,\n    private alertService: AlertService\n  ) {\n    this.form = new FormGroup({\n      title: new FormControl(null, [Validators.required]),\n      text: new FormControl(null, [Validators.required]),\n      author: new FormControl(null, [Validators.required])\n    });\n  }\n\n  ngOnInit(): void {\n  }\n\n  submit(): void {\n    if (this.form.invalid){\n      return;\n    }\n\n    const post: PostRequest = {\n      title: this.form.value.title,\n      text: this.form.value.text,\n      authorName: this.form.value.author\n    };\n\n    this.postsService.create(post).subscribe(() => {\n      this.form.reset();\n      this.alertService.success('The post was successfully created!');\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "form {\r\n  padding: 0.5rem;\r\n  margin: 0 auto;\r\n}\r\n",
+                    "styleUrl": "./create-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "postsService",
+                        "type": "PostsService"
+                    },
+                    {
+                        "name": "alertService",
+                        "type": "AlertService"
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "postsService",
+                        "type": "PostsService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<form [formGroup]=\"form\" (ngSubmit)=\"submit()\">\n  <h1>Create a new post</h1>\n\n  <div\n    class=\"form-control\"\n    [ngClass]=\"{invalid: form.get('title')?.touched && form.get('title')?.invalid}\"\n  >\n    <label for=\"title\">Title: </label>\n    <input id=\"title\" type=\"text\" formControlName=\"title\">\n\n    <div\n      class=\"validation\"\n      *ngIf=\"form.get('title')?.touched && form.get('title')?.invalid\"\n    >\n      <small *ngIf=\"form.get('title')?.errors?.required\">Title cannot be empty.</small>\n    </div>\n\n    <div class=\"form-control\">\n      <label>Post text</label>\n      <quill-editor formControlName=\"text\" [styles]=\"{height: '250px'}\"></quill-editor>\n    </div>\n  </div>\n\n  <div\n    class=\"form-control\"\n    [ngClass]=\"{invalid: form.get('author')?.touched && form.get('author')?.invalid}\"\n  >\n    <label for=\"author\">Author: </label>\n    <input id=\"author\" type=\"text\" formControlName=\"author\">\n\n    <div\n      class=\"validation\"\n      *ngIf=\"form.get('author')?.touched && form.get('author')?.invalid\"\n    >\n      <small *ngIf=\"form.get('author')?.errors?.required\">Author cannot be empty.</small>\n    </div>\n  </div>\n  <button\n    type=\"submit\"\n    class=\"btn btn-block btn-dark\"\n    [disabled]=\"form.invalid\"\n  >\n  Create post\n  </button>\n</form>\n"
+        },
+        {
+            "name": "DashboardPageComponent",
+            "id": "component-DashboardPageComponent-1bdd3daf11c9a4a11a2bfe4f10f52514",
+            "file": "src/app/admin/dashboard-page/dashboard-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-dashboard-page",
+            "styleUrls": [
+                "./dashboard-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./dashboard-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "posts",
+                    "type": "PostResponse[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "pSub",
+                    "type": "Subscription",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "rSub",
+                    "type": "Subscription",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "searchStr",
+                    "defaultValue": "''",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 41
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 27
+                },
+                {
+                    "name": "remove",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {Component, OnDestroy, OnInit} from '@angular/core';\nimport {PostsService} from '../../shared/services/posts.service';\nimport {PostResponse} from '../../shared/models/post-response.model';\nimport {Subscription} from 'rxjs';\nimport {AlertService} from '../shared/services/alert.service';\nimport {AuthService} from '../shared/services/auth.service';\n\n@Component({\n  selector: 'app-dashboard-page',\n  templateUrl: './dashboard-page.component.html',\n  styleUrls: ['./dashboard-page.component.scss']\n})\nexport class DashboardPageComponent implements OnInit, OnDestroy{\n\n  posts: PostResponse[];\n  searchStr = '';\n  pSub: Subscription;\n  rSub: Subscription;\n\n  constructor(\n    private postsService: PostsService,\n    private alertService: AlertService,\n    private authService: AuthService\n  ) {\n  }\n\n  ngOnInit(): void {\n    this.pSub = this.postsService.getAll().subscribe(result => {\n      console.log(result);\n      this.posts = result;\n    });\n  }\n\n  remove(id: string): void {\n    this.rSub = this.postsService.delete(id).subscribe(() => {\n      this.posts = this.posts.filter( post => post.id !== id);\n      this.alertService.danger('The post was deleted!');\n    });\n  }\n\n  ngOnDestroy(): void {\n    this.pSub?.unsubscribe();\n    this.rSub?.unsubscribe();\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".text-center {\r\n  padding: 5rem;\r\n}\r\n\r\n.edit {\r\n  margin-right: 20px;\r\n}\r\n",
+                    "styleUrl": "./dashboard-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "postsService",
+                        "type": "PostsService"
+                    },
+                    {
+                        "name": "alertService",
+                        "type": "AlertService"
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService"
+                    }
+                ],
+                "line": 18,
+                "jsdoctags": [
+                    {
+                        "name": "postsService",
+                        "type": "PostsService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ],
+            "templateData": "<div *ngIf=\"posts?.length; else loading\">\n  <div class=\"form-control\">\n    <input type=\"text\" placeholder=\"Search\" [(ngModel)]=\"searchStr\">\n  </div>\n  <table>\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Author</th>\n        <th>Title</th>\n        <th>Date</th>\n        <th>Actions</th>\n      </tr>\n    </thead>\n\n    <tbody>\n      <tr *ngFor=\"let post of posts | searchItem:searchStr:'title'; let idx= index\">\n        <td>{{idx + 1}}</td>\n        <td>{{ post.authorName }}</td>\n        <td>{{ post.title }}</td>\n        <td>{{ post.modified | date: 'medium':undefined:'en'}}</td>\n        <td>\n          <button\n            class=\"btn btn-link edit\"\n            [routerLink]=\"['/admin', 'post', post.id, 'edit']\"\n          >\n          Edit\n          </button>\n          <a (click)=\"remove(post.id)\">Delete</a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n\n<ng-template #loading>\n  <h2 class=\"text-center\">Loading...</h2>\n</ng-template>\n"
+        },
+        {
+            "name": "EditPageComponent",
+            "id": "component-EditPageComponent-aff23a0486f26690ad9a81eba48cba49",
+            "file": "src/app/admin/edit-page/edit-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-edit-page",
+            "styleUrls": [
+                "./edit-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./edit-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "form",
+                    "type": "FormGroup",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "post",
+                    "type": "PostResponse",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "submitted",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "uSub",
+                    "type": "Subscription",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 30
+                },
+                {
+                    "name": "submit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 44
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {Component, OnDestroy, OnInit} from '@angular/core';\nimport {ActivatedRoute, Params, Router} from '@angular/router';\nimport {PostsService} from '../../shared/services/posts.service';\nimport {switchMap} from 'rxjs/operators';\nimport {PostResponse} from '../../shared/models/post-response.model';\nimport {FormControl, FormGroup, Validators} from '@angular/forms';\nimport {Subscription} from 'rxjs';\nimport {AlertService} from '../shared/services/alert.service';\n\n@Component({\n  selector: 'app-edit-page',\n  templateUrl: './edit-page.component.html',\n  styleUrls: ['./edit-page.component.scss']\n})\nexport class EditPageComponent implements OnInit, OnDestroy {\n\n  form: FormGroup;\n  post: PostResponse;\n  uSub: Subscription;\n  submitted: boolean;\n\n  constructor(\n    private route: ActivatedRoute,\n    private router: Router,\n    private postsService: PostsService,\n    private alertService: AlertService\n  ) {\n  }\n\n  ngOnInit(): void {\n    this.route.params.pipe(\n      switchMap( (params: Params) => {\n        return this.postsService.getById(params.id);\n      })\n    ).subscribe( (post: PostResponse) => {\n      this.post = post;\n      this.form = new FormGroup({\n        title: new FormControl(post.title, [Validators.required]),\n        text: new FormControl(post.text, [Validators.required]),\n      });\n    });\n  }\n\n  submit(): void {\n    if (this.form.invalid){\n      return;\n    }\n    this.submitted = true;\n\n    this.uSub = this.postsService.update({\n      ...this.post,\n      title: this.form.value.title,\n      text: this.form.value.text,\n    })\n      .subscribe(() => {\n        this.submitted = false;\n        this.alertService.success('The post was updated!');\n        this.router.navigate(['/admin', 'dashboard']);\n    });\n  }\n\n  ngOnDestroy(): void {\n    this.uSub?.unsubscribe();\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".text-center {\r\n  padding: 5rem;\r\n}\r\n",
+                    "styleUrl": "./edit-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute"
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router"
+                    },
+                    {
+                        "name": "postsService",
+                        "type": "PostsService"
+                    },
+                    {
+                        "name": "alertService",
+                        "type": "AlertService"
+                    }
+                ],
+                "line": 20,
+                "jsdoctags": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "postsService",
+                        "type": "PostsService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ],
+            "templateData": "<div *ngIf=\"form; else loading\">\n  <h1>Edit post</h1>\n  <form [formGroup]=\"form\" (ngSubmit)=\"submit()\">\n    <div\n      class=\"form-control\"\n      [ngClass]=\"{invalid: form.get('title')?.touched && form.get('title')?.invalid}\"\n    >\n      <label for=\"title\">Title: </label>\n      <input id=\"title\" type=\"text\" formControlName=\"title\">\n      <div\n        class=\"validation\"\n        *ngIf=\"form.get('title')?.touched && form.get('title')?.invalid\"\n      >\n        <small *ngIf=\"form.get('title')?.errors?.required\">Title cannot be empty.</small>\n      </div>\n\n      <div class=\"form-control\">\n        <label>Post text</label>\n        <quill-editor formControlName=\"text\"></quill-editor>\n      </div>\n    </div>\n\n    <button\n      class=\"btn btn-primary\"\n      type=\"submit\"\n      [disabled]=\"form.invalid || submitted\"\n    >Update</button>\n  </form>\n</div>\n\n\n<ng-template #loading>\n  <h2 class=\"text-center\">Loading...</h2>\n</ng-template>\n"
+        },
+        {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-246e2a69dc126a3bd76c6328dd3b93e2",
+            "file": "src/stories/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-header",
+            "styleUrls": [
+                "./header.css"
+            ],
+            "styles": [],
+            "template": "<header>    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          primary\n          size=\"small\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </header>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "line": 53,
+                    "type": "unknown"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onCreateAccount",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 62,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogin",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 56,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogout",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 59,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-header',\n  template: `<header>\n    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          primary\n          size=\"small\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </header>`,\n  styleUrls: ['./header.css'],\n})\nexport default class HeaderComponent {\n  @Input()\n  user: unknown = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".wrapper {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\nsvg {\n  display: inline-block;\n  vertical-align: top;\n}\n\nh1 {\n  font-weight: 900;\n  font-size: 20px;\n  line-height: 1;\n  margin: 6px 0 6px 10px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nbutton + button {\n  margin-left: 10px;\n}\n",
+                    "styleUrl": "./header.css"
+                }
+            ],
+            "stylesData": ""
+        },
+        {
+            "name": "HomePageComponent",
+            "id": "component-HomePageComponent-37da7e6253921296497d14ad95ba0bc1",
+            "file": "src/app/home-page/home-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-home-page",
+            "styleUrls": [
+                "./home-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./home-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "posts$",
+                    "type": "Observable<PostResponse[]>",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 19
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport {PostsService} from '../shared/services/posts.service';\nimport {Observable} from 'rxjs';\nimport {PostResponse} from '../shared/models/post-response.model';\n\n@Component({\n  selector: 'app-home-page',\n  templateUrl: './home-page.component.html',\n  styleUrls: ['./home-page.component.scss']\n})\nexport class HomePageComponent implements OnInit {\n\n  posts$: Observable<PostResponse[]>;\n\n  constructor(\n    private postsService: PostsService\n  ) { }\n\n  ngOnInit(): void {\n    this.posts$ = this.postsService.getAll();\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".posts {\r\n  max-width: 600px;\r\n  margin: 0 auto;\r\n}\r\n",
+                    "styleUrl": "./home-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "postsService",
+                        "type": "PostsService"
+                    }
+                ],
+                "line": 13,
+                "jsdoctags": [
+                    {
+                        "name": "postsService",
+                        "type": "PostsService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div\n  *ngIf=\"posts$ | async as posts; else loading\"\n  class=\"posts\"\n>\n  <app-post\n    *ngFor=\"let post of posts\"\n    [post]=\"post\"\n  ></app-post>\n</div>\n\n<ng-template #loading>\n  <h2 class=\"text-center\">Loading...</h2>\n</ng-template>\n"
+        },
+        {
+            "name": "LoginPageComponent",
+            "id": "component-LoginPageComponent-387d8dbf3ac6823a4c30c99fc3e1c214",
+            "file": "src/app/admin/login-page/login-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login-page",
+            "styleUrls": [],
+            "styles": [],
+            "template": "",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "authService",
+                    "type": "AuthService",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport {AuthService} from '../shared/services/auth.service';\nimport {Router} from '@angular/router';\n\n@Component({\n  selector: 'app-login-page',\n  template: ''\n})\nexport class LoginPageComponent implements OnInit{\n  constructor(\n    public authService: AuthService,\n    private router: Router,\n  ) {\n  }\n\n  ngOnInit(): void {\n    if (this.authService.isLoggedIn()) {\n      this.router.navigate(['/admin', 'dashboard']);\n    }\n    else {\n      this.authService.startAuthentication();\n    }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService"
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router"
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ]
+        },
+        {
+            "name": "MainLayoutComponent",
+            "id": "component-MainLayoutComponent-24c7be3c87bee0eac463729164a39ed6",
+            "file": "src/app/shared/components/main-layout/main-layout.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-main-layout",
+            "styleUrls": [
+                "./main-layout.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./main-layout.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-main-layout',\n  templateUrl: './main-layout.component.html',\n  styleUrls: ['./main-layout.component.scss']\n})\nexport class MainLayoutComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./main-layout.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<nav class=\"navbar main\">\n  <h1>My blog</h1>\n</nav>\n\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>\n"
+        },
+        {
+            "name": "PageComponent",
+            "id": "component-PageComponent-8f196770333aa216860a88c0b6b221aa",
+            "file": "src/stories/page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-page",
+            "styleUrls": [
+                "./page.css"
+            ],
+            "styles": [],
+            "template": "<article>    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"onLogout.emit($event)\"\n      (onLogin)=\"onLogin.emit($event)\"\n      (onCreateAccount)=\"onCreateAccount.emit($event)\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "line": 64,
+                    "type": "unknown"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onCreateAccount",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 73,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogin",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 67,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogout",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "line": 70,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-page',\n  template: `<article>\n    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"onLogout.emit($event)\"\n      (onLogin)=\"onLogin.emit($event)\"\n      (onCreateAccount)=\"onCreateAccount.emit($event)\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>`,\n  styleUrls: ['./page.css'],\n})\nexport default class PageComponent {\n  @Input()\n  user: unknown = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n\n// export const Page = ({ user, onLogin, onLogout, onCreateAccount }) => (\n//   <article>\n//     <Header user={user} onLogin={onLogin} onLogout={onLogout} onCreateAccount={onCreateAccount} />\n\n// );\n// Page.propTypes = {\n//   user: PropTypes.shape({}),\n//   onLogin: PropTypes.func.isRequired,\n//   onLogout: PropTypes.func.isRequired,\n//   onCreateAccount: PropTypes.func.isRequired,\n// };\n\n// Page.defaultProps = {\n//   user: null,\n// };\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "section {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 24px;\n  padding: 48px 20px;\n  margin: 0 auto;\n  max-width: 600px;\n  color: #333;\n}\n\nh2 {\n  font-weight: 900;\n  font-size: 32px;\n  line-height: 1;\n  margin: 0 0 4px;\n  display: inline-block;\n  vertical-align: top;\n}\n\np {\n  margin: 1em 0;\n}\n\na {\n  text-decoration: none;\n  color: #1ea7fd;\n}\n\nul {\n  padding-left: 30px;\n  margin: 1em 0;\n}\n\nli {\n  margin-bottom: 8px;\n}\n\n.tip {\n  display: inline-block;\n  border-radius: 1em;\n  font-size: 11px;\n  line-height: 12px;\n  font-weight: 700;\n  background: #e7fdd8;\n  color: #66bf3c;\n  padding: 4px 12px;\n  margin-right: 10px;\n  vertical-align: top;\n}\n\n.tip-wrapper {\n  font-size: 13px;\n  line-height: 20px;\n  margin-top: 40px;\n  margin-bottom: 40px;\n}\n\n.tip-wrapper svg {\n  display: inline-block;\n  height: 12px;\n  width: 12px;\n  margin-right: 4px;\n  vertical-align: top;\n  margin-top: 3px;\n}\n\n.tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
+                    "styleUrl": "./page.css"
+                }
+            ],
+            "stylesData": ""
+        },
+        {
+            "name": "PostComponent",
+            "id": "component-PostComponent-acf819a4c20f23197b171fc0a908b487",
+            "file": "src/app/shared/components/post/post.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-post",
+            "styleUrls": [
+                "./post.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./post.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "post",
+                    "line": 11,
+                    "type": "PostResponse"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 15
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {Component, Input, OnInit} from '@angular/core';\nimport {PostResponse} from '../../models/post-response.model';\n\n@Component({\n  selector: 'app-post',\n  templateUrl: './post.component.html',\n  styleUrls: ['./post.component.scss']\n})\nexport class PostComponent implements OnInit {\n\n  @Input() post: PostResponse;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".author {\r\n  text-align: right;\r\n}\r\n",
+                    "styleUrl": "./post.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 11
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"card\">\n  <div class=\"card-header\">\n    <h2>{{post.title}}</h2>\n    <p>{{post.modified | date:'dd.MM.YYYY'}}</p>\n  </div>\n\n  <div class=\"author\">\n    <p>{{post.authorName}}</p>\n  </div>\n\n  <button\n    [routerLink]=\"['/post', post.id]\"\n    class=\"btn btn-dark\"\n  >\n    Open</button>\n</div>\n"
+        },
+        {
+            "name": "PostPageComponent",
+            "id": "component-PostPageComponent-a6097ec7209bfd79fb217462cf759219",
+            "file": "src/app/post-page/post-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-post-page",
+            "styleUrls": [
+                "./post-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./post-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "post$",
+                    "type": "Observable<PostResponse>",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import {Component, OnInit} from '@angular/core';\nimport {PostResponse} from '../shared/models/post-response.model';\nimport {ActivatedRoute, Params} from '@angular/router';\nimport {PostsService} from '../shared/services/posts.service';\nimport {Observable} from 'rxjs';\nimport {switchMap} from 'rxjs/operators';\n\n@Component({\n  selector: 'app-post-page',\n  templateUrl: './post-page.component.html',\n  styleUrls: ['./post-page.component.scss']\n})\nexport class PostPageComponent implements OnInit {\n\n  post$: Observable<PostResponse>;\n\n  constructor(\n    private route: ActivatedRoute,\n    private postsService: PostsService\n  ) { }\n\n  ngOnInit(): void {\n    this.post$ = this.route.params.pipe(\n      switchMap((params: Params) => {\n        return this.postsService.getById(params.id);\n      })\n    );\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".post {\r\n  .header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n  }\r\n\r\n  h1 {\r\n    margin-bottom: .5rem;\r\n  }\r\n\r\n  .info {\r\n    display: inline-flex;\r\n    strong {\r\n      margin-right: 1rem;\r\n    }\r\n  }\r\n}\r\n\r\n.editor {\r\n  padding: 1rem 0;\r\n}\r\n",
+                    "styleUrl": "./post-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute"
+                    },
+                    {
+                        "name": "postsService",
+                        "type": "PostsService"
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "postsService",
+                        "type": "PostsService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"post\" *ngIf=\"post$ | async as post; else loading\">\n  <div class=\"header\">\n    <h1>{{post?.title}}</h1>\n\n    <button routerLink=\"/\" class=\"btn btn-link\">To main</button>\n  </div>\n\n  <div class=\"info\">\n    <strong>{{post?.authorName}}</strong>\n    <p>{{post?.modified | date:'medium'}}</p>\n  </div>\n\n  <div\n    class=\"editor\">\n    <quill-view-html [content]=\"post.text\"></quill-view-html>\n  </div>\n</div>\n\n<ng-template #loading>\n  <h2 class=\"text-center\">Loading...</h2>\n</ng-template>\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AdminModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AdminLayoutComponent"
+                        },
+                        {
+                            "name": "AlertComponent"
+                        },
+                        {
+                            "name": "AuthCallbackComponent"
+                        },
+                        {
+                            "name": "CreatePageComponent"
+                        },
+                        {
+                            "name": "DashboardPageComponent"
+                        },
+                        {
+                            "name": "EditPageComponent"
+                        },
+                        {
+                            "name": "LoginPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        },
+                        {
+                            "name": "HomePageComponent"
+                        },
+                        {
+                            "name": "MainLayoutComponent"
+                        },
+                        {
+                            "name": "PostComponent"
+                        },
+                        {
+                            "name": "PostPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        },
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SharedModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": [
+                        {
+                            "name": "AlertService"
+                        }
+                    ]
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "SearchPipe"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "SearchPipe"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "Base",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/post/post.component.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "type": "Environment",
+                "defaultValue": "{\r\n  production: true,\r\n  serverConnectionString: 'https://localhost:5001',\r\n  isConnectionString: 'https://localhost:10001'\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "type": "Environment",
+                "defaultValue": "{\r\n  production: false,\r\n  serverConnectionString: 'https://localhost:5001',\r\n  isConnectionString: 'https://localhost:10001'\r\n}"
+            },
+            {
+                "name": "INTERCEPTOR_PROVIDER",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/app.module.ts",
+                "type": "Provider",
+                "defaultValue": "{\n  provide: HTTP_INTERCEPTORS,\n  multi: true,\n  useClass: AuthInterceptor\n}"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedIn",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedIn",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedOut",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedOut",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "type": "literal type"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Small",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "type": "Story<Button>",
+                "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "type": "Story<Header>",
+                "defaultValue": "(args: Header) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "type": "Story<Page>",
+                "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/post/post.component.stories.ts",
+                "type": "Story<PostComponent>",
+                "defaultValue": "(args) => ({\r\n  props: args,\r\n  component: PostComponent\r\n})"
+            },
+            {
+                "name": "toolbarOptions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/shared.module.ts",
+                "type": "[]",
+                "defaultValue": "[\n  ['bold', 'italic', 'underline', 'strike'],\n  ['blockquote', 'code-block'],\n  [{ header: 1 }, { header: 2 }],\n  [{ list: 'ordered'}, { list: 'bullet' }],\n  [{ script: 'sub'}, { script: 'super' }],\n  [{ direction: 'rtl' }],\n  [{ size: ['small', false, 'large', 'huge'] }],\n  [{ header: [1, 2, 3, 4, 5, 6, false] }],\n  [{ color: [] }, { background: [] }],\n  [{ font: [] }],\n  [{ align: [] }],\n  ['clean']\n]"
+            }
+        ],
+        "functions": [
+            {
+                "name": "getClientSettings",
+                "file": "src/app/admin/shared/services/auth.service.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "description": "",
+                "args": [],
+                "returnType": "UserManagerSettings"
+            }
+        ],
+        "typealiases": [
+            {
+                "name": "AlertType",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"success\" | \"danger\" | \"warning\"",
+                "file": "src/app/shared/models/alert.model.ts",
+                "description": "",
+                "kind": 168
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/app/shared/components/post/post.component.stories.ts": [
+                {
+                    "name": "Base",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/post/post.component.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/post/post.component.stories.ts",
+                    "type": "Story<PostComponent>",
+                    "defaultValue": "(args) => ({\r\n  props: args,\r\n  component: PostComponent\r\n})"
+                }
+            ],
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "type": "literal type"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "type": "Environment",
+                    "defaultValue": "{\r\n  production: true,\r\n  serverConnectionString: 'https://localhost:5001',\r\n  isConnectionString: 'https://localhost:10001'\r\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "type": "Environment",
+                    "defaultValue": "{\r\n  production: false,\r\n  serverConnectionString: 'https://localhost:5001',\r\n  isConnectionString: 'https://localhost:10001'\r\n}"
+                }
+            ],
+            "src/app/app.module.ts": [
+                {
+                    "name": "INTERCEPTOR_PROVIDER",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/app.module.ts",
+                    "type": "Provider",
+                    "defaultValue": "{\n  provide: HTTP_INTERCEPTORS,\n  multi: true,\n  useClass: AuthInterceptor\n}"
+                }
+            ],
+            "src/stories/Button.stories.ts": [
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "type": "Story<Button>",
+                    "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Header.stories.ts": [
+                {
+                    "name": "LoggedIn",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LoggedOut",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "type": "Story<Header>",
+                    "defaultValue": "(args: Header) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Page.stories.ts": [
+                {
+                    "name": "LoggedIn",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LoggedOut",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "type": "Story<Page>",
+                    "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/app/shared/shared.module.ts": [
+                {
+                    "name": "toolbarOptions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/shared.module.ts",
+                    "type": "[]",
+                    "defaultValue": "[\n  ['bold', 'italic', 'underline', 'strike'],\n  ['blockquote', 'code-block'],\n  [{ header: 1 }, { header: 2 }],\n  [{ list: 'ordered'}, { list: 'bullet' }],\n  [{ script: 'sub'}, { script: 'super' }],\n  [{ direction: 'rtl' }],\n  [{ size: ['small', false, 'large', 'huge'] }],\n  [{ header: [1, 2, 3, 4, 5, 6, false] }],\n  [{ color: [] }, { background: [] }],\n  [{ font: [] }],\n  [{ align: [] }],\n  ['clean']\n]"
+                }
+            ]
+        },
+        "groupedFunctions": {
+            "src/app/admin/shared/services/auth.service.ts": [
+                {
+                    "name": "getClientSettings",
+                    "file": "src/app/admin/shared/services/auth.service.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "description": "",
+                    "args": [],
+                    "returnType": "UserManagerSettings"
+                }
+            ]
+        },
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "src/app/shared/models/alert.model.ts": [
+                {
+                    "name": "AlertType",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"success\" | \"danger\" | \"warning\"",
+                    "file": "src/app/shared/models/alert.model.ts",
+                    "description": "",
+                    "kind": 168
+                }
+            ]
+        }
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [
+                    {
+                        "path": "",
+                        "component": "MainLayoutComponent",
+                        "children": [
+                            {
+                                "path": "",
+                                "redirectTo": "/",
+                                "pathMatch": "full"
+                            },
+                            {
+                                "path": "",
+                                "component": "HomePageComponent"
+                            },
+                            {
+                                "path": "post/:id",
+                                "component": "PostPageComponent"
+                            }
+                        ]
+                    },
+                    {
+                        "path": "admin",
+                        "loadChildren": "./admin/admin.module#AdminModule",
+                        "children": [
+                            {
+                                "kind": "module",
+                                "children": [],
+                                "module": "AdminModule"
+                            }
+                        ]
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 1,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/admin/create-page/create-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CreatePageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/dashboard-page/dashboard-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DashboardPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/edit-page/edit-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "EditPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/login-page/login-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/shared/components/admin-layout/admin-layout.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AdminLayoutComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/shared/components/alert/alert.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/shared/components/auth-callback/auth-callback.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AuthCallbackComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/shared/services/alert.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AlertService",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/shared/services/auth.guard.ts",
+                "type": "guard",
+                "linktype": "guard",
+                "name": "AuthGuard",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/shared/services/auth.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AuthService",
+                "coveragePercent": 0,
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/admin/shared/services/auth.service.ts",
+                "type": "function",
+                "linksubtype": "function",
+                "name": "getClientSettings",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "INTERCEPTOR_PROVIDER",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/home-page/home-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomePageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/post-page/post-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PostPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/main-layout/main-layout.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "MainLayoutComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/post/post.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Base",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/post/post.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/post/post.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PostComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/interceptors/auth.interceptor.ts",
+                "type": "interceptor",
+                "linktype": "interceptor",
+                "name": "AuthInterceptor",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/models/alert.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Alert",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/models/envelope.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Envelope",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/models/fb-auth-response.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "FbAuthResponse",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/models/fb-create-response.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "FbCreateResponse",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/models/post-request.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "PostRequest",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/models/post-response.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "PostResponse",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/pipes/search.pipe.ts",
+                "type": "pipe",
+                "linktype": "pipe",
+                "name": "SearchPipe",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/services/posts.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "PostsService",
+                "coveragePercent": 0,
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/shared.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "toolbarOptions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/interface.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedIn",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedOut",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedIn",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedOut",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/stories/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
