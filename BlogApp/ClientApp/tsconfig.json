@@ -20,8 +20,10 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "types": ["cypress"]
   },
+  "include": ["**/*.ts"],
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
